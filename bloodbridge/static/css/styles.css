@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Instrument Sans", sans-serif;
+  background-color: #FFF8FC;
+  color: #000;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.logo img {
+  width: 100px;
+  margin-right: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  margin-left: 50px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-login {
+  border: 2px solid #E1AFCC;
+  padding: 8px 20px;
+  border-radius: 25px;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.btn-signup {
+  border: 2px solid #E1AFCC;
+  background: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+
+.hero {
+  padding: 100px 60px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 550px;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media(max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buttons {
+    margin-top: 15px;
+  }
+
+  .hero {
+    padding: 60px 20px;
+  }
+}
+
+/* MODAL STYLES */
+.modal {
+  display: none;   /* hidden by default */
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5); /* transparent background */
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 100px 50px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px; /* space for icons */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.input-group .icon {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+  color: #888;
+}
+
+.input-group .toggle {
+  position: absolute;
+  right: 12px;
+  font-size: 16px;
+  color: #888;
+  cursor: pointer;
+}
+
+
+.submit-btn {
+  background: #F81A99;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background: #d61580;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #F81A99;
+  font-size: 14px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* HOVER */
+
+.nav-links a:hover {
+  color: #F81A99;
+}
+
+.buttons button:hover {
+  color: #F81A99;
+}
