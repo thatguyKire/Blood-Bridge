@@ -16,11 +16,11 @@ function clearModalForm(modal) {
       input.value = '';
     }
   });
-
-  // Remove any Django error lists
-  const errors = modal.querySelectorAll('.errorlist');
-  errors.forEach(e => e.remove());
+  
+  // Remove custom error messages
+  modal.querySelectorAll('.custom-error, .errorlist').forEach(e => e.remove());
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginModal = document.getElementById("loginModal");
@@ -46,19 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
     signupModal.classList.remove("show");
     clearModalForm(signupModal);
   });
+});
 
   // Click outside modal closes it
-  window.addEventListener("click", (e) => {
-    if (e.target === loginModal) {
-      loginModal.classList.remove("show");
-    }
-    if (e.target === signupModal) {
-      signupModal.classList.remove("show");
-    }
-  });
+window.addEventListener("click", (e) => {
+  if (e.target === loginModal) {
+    loginModal.classList.remove("show");
+    clearModalForm(loginModal);
+  }
+  if (e.target === signupModal) {
+    signupModal.classList.remove("show");
+    clearModalForm(signupModal);
+  }
+});
 
   // Open modal from server-side hint
-  const openModal = document.getElementById("openModalHint")?.value;
-  if (openModal === "login") loginModal.classList.add("show");
-  if (openModal === "register") signupModal.classList.add("show");
-});
+const openModal = document.getElementById("openModalHint")?.value;
+if (openModal === "login") loginModal.classList.add("show");
+if (openModal === "register") signupModal.classList.add("show");

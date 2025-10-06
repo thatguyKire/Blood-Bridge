@@ -45,32 +45,53 @@
     <div class="modal-content">
       <span class="close" id="closeSignup">&times;</span>
       <h2>Sign up</h2>
-      <form method="post" action="{% url 'register' %}">
+      <form method="post" action="{% url 'register' %}" novalidate>
         {% csrf_token %}
-        
-        {{ registration_form.non_field_errors }}
         
         <!-- Email Field -->
         <div class="input-group">
-          <span class="icon">📧</span>
-          <input type="email" name="username" placeholder="Email" required value="{{ registration_form.username.value|default:'' }}">
-          {{ registration_form.username.errors }}
+          <div class="input-field">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24">
+              <path d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z"/>
+            </svg>
+            <input type="email" name="username" placeholder="email">
+          </div>
+          {% if registration_form.username.errors %}
+            <p class="custom-error">{{ registration_form.username.errors.0 }}</p>
+          {% endif %}
         </div>
 
         <!-- Password Field -->
         <div class="input-group">
-          <span class="icon">🔒</span>
-          <input type="password" name="password1" placeholder="Password" id="password" required>
-          {{ registration_form.password1.errors }}
-          <i class="bi bi-eye toggle" onclick="togglePassword('password')"></i>
+          <div class="input-field">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24">
+              <path d="M19,8.424V7A7,7,0,0,0,5,7V8.424A5,5,0,0,0,2,13v6a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V13A5,5,0,0,0,19,8.424ZM7,7A5,5,0,0,1,17,7V8H7ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H17a3,3,0,0,1,3,3Z"/>
+              <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z"/>
+            </svg>
+            <input type="password" name="password1" placeholder="password" id="password">
+            <i class="bi bi-eye toggle" onclick="togglePassword('password')"></i>
+          </div>
+          {% if registration_form.password1.errors %}
+            <p class="custom-error">{{ registration_form.password1.errors.0 }}</p>
+          {% endif %}
         </div>
 
         <!-- Confirm Password Field -->
         <div class="input-group">
-          <span class="icon">🔒</span>
-          <input type="password" name="password2" placeholder="Confirm Password" id="confirmPassword" required>
-          {{ registration_form.password2.errors }}
-          <i class="bi bi-eye toggle" onclick="togglePassword('confirmPassword')"></i>
+          <div class="input-field">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24">
+              <path d="M19,8.424V7A7,7,0,0,0,5,7V8.424A5,5,0,0,0,2,13v6a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V13A5,5,0,0,0,19,8.424ZM7,7A5,5,0,0,1,17,7V8H7ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H17a3,3,0,0,1,3,3Z"/>
+              <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z"/>
+            </svg>
+            <input type="password" name="password2" placeholder="confirm password" id="confirmPassword">
+            <i class="bi bi-eye toggle" onclick="togglePassword('confirmPassword')"></i>
+          </div>
+          {% if registration_form.password2.errors %}
+            <p class="custom-error">{{ registration_form.password2.errors.0 }}</p>
+          {% endif %}
+          {% if registration_form.non_field_errors %}
+            <p class="custom-error">{{ registration_form.non_field_errors.0 }}</p>
+          {% endif %}
         </div>
 
         <button type="submit" class="submit-btn">Sign up</button>
@@ -83,24 +104,39 @@
     <div class="modal-content">
       <span class="close" id="closeLogin">&times;</span>
       <h2>Log in</h2>
-      <form method="post" action="{% url 'login' %}">
+      <form method="post" action="{% url 'login' %}" novalidate>
         {% csrf_token %}
-
-        {{ login_form.non_field_errors }}
 
         <!-- Email Field -->
         <div class="input-group">
-          <span class="icon">📧</span>
-          <input type="email" name="username" placeholder="Email" required value="{{ login_form.username.value|default:'' }}">
-          {{ login_form.username.errors }}
+          <div class="input-field">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24">
+              <path d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z"/>
+            </svg>
+            <input type="email" name="username" placeholder="email" value="{{ login_form.username.value|default:'' }}">
+          </div>
+          {% if login_form.username.errors %}
+            <p class="custom-error">{{ login_form.username.errors.0 }}</p>
+          {% endif %}
+
         </div>
 
         <!-- Password Field -->
         <div class="input-group">
-          <span class="icon">🔒</span>
-          <input type="password" name="password" placeholder="Password" id="loginPassword" required>
-          {{ login_form.password.errors  }}
-          <i class="bi bi-eye toggle" onclick="togglePassword('loginPassword')"></i>
+          <div class="input-field">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24">
+              <path d="M19,8.424V7A7,7,0,0,0,5,7V8.424A5,5,0,0,0,2,13v6a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V13A5,5,0,0,0,19,8.424ZM7,7A5,5,0,0,1,17,7V8H7ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H17a3,3,0,0,1,3,3Z"/>
+              <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z"/>
+            </svg>
+            <input type="password" name="password" placeholder="password" id="loginPassword">
+            <i class="bi bi-eye toggle" onclick="togglePassword('loginPassword')"></i>
+          </div>
+          {% if login_form.password.errors %}
+            <p class="custom-error">{{ login_form.password.errors.0 }}</p>
+          {% endif %}
+          {% if login_form.non_field_errors %}
+            <p class="custom-error">{{ login_form.non_field_errors.0 }}</p>
+          {% endif %}
         </div>
 
         <button type="submit" class="submit-btn">Log in</button>
