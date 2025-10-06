@@ -184,6 +184,10 @@ body {
   box-shadow: none;
 }
 
+.input-group:has(.custom-error) input {
+  border-bottom: 2px solid red;
+}
+
 .input-field .icon {
   position: absolute;
   left: 0px;
@@ -198,6 +202,10 @@ body {
 
 .input-field:focus-within .icon {
   fill: #F81A99;
+}
+
+.input-group:has(.custom-error) .icon {
+  fill: red;
 }
 
 .input-field .toggle {
@@ -262,4 +270,7 @@ body {
 .custom-error {
   color: red;
   font-size: 12px;
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
 }

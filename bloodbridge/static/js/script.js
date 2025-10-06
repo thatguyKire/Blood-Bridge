@@ -46,21 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
     signupModal.classList.remove("show");
     clearModalForm(signupModal);
   });
-});
 
-  // Click outside modal closes it
-window.addEventListener("click", (e) => {
-  if (e.target === loginModal) {
-    loginModal.classList.remove("show");
-    clearModalForm(loginModal);
-  }
-  if (e.target === signupModal) {
-    signupModal.classList.remove("show");
-    clearModalForm(signupModal);
-  }
-});
+    // Click outside modal closes it
+  window.addEventListener("click", (e) => {
+    if (e.target === loginModal) {
+      loginModal.classList.remove("show");
+      clearModalForm(loginModal);
+    }
+    if (e.target === signupModal) {
+      signupModal.classList.remove("show");
+      clearModalForm(signupModal);
+    }
+  });
 
-  // Open modal from server-side hint
-const openModal = document.getElementById("openModalHint")?.value;
-if (openModal === "login") loginModal.classList.add("show");
-if (openModal === "register") signupModal.classList.add("show");
+    // Open modal from server-side hint
+  const openModal = document.getElementById("openModalHint")?.value;
+  if (openModal === "login") loginModal.classList.add("show");
+  if (openModal === "register") signupModal.classList.add("show");
+});
