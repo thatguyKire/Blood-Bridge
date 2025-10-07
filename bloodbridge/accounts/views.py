@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import CustomUserCreationForm as CustomCreation
 from .forms import CustomAuthenticationForm as CustomAuthentication
 
@@ -61,6 +61,14 @@ def login_view(request):
             })
     return redirect("index")    
 
+# Logout view
+def logout_view(request):
+    logout(request)
+    return redirect("index")
+
+# Home view
 def home_view(request):
+    if not request.user.is_authenticated: # di maka access sa /home if not logged in
+        return redirect("index")
     return render(request, "home.html")
 
