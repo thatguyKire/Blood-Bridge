@@ -99,18 +99,27 @@ body {
 
 /* MODAL STYLES */
 .modal {
-  display: none;   /* hidden by default */
-  position: fixed; 
-  z-index: 1000; 
+  display: flex;                /* necessary for centering */
+  justify-content: center;      /* horizontal center */
+  align-items: center;          /* vertical center */
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.5); /* transparent background */
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
-  justify-content: center;
-  align-items: center;
+  pointer-events: none;         /* prevent clicks when hidden */
+  transition: opacity 0.3s;
+}
+
+.modal.show {
+  visibility: visible; /* show the modal */
+  opacity: 1;      /* opaque */
+  pointer-events: auto; /* enable interactions */
 }
 
 .modal-content {
@@ -124,45 +133,82 @@ body {
 
 .modal-content h2 {
   text-align: center;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
   font-size: 30px;
 }
 
 .modal-content form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .modal-content input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border: none; /* remove full box border */
+  border-bottom: 1px solid #ccc; /* only bottom visible */
+  background: transparent;
+  border-radius: 0;
+  outline: none;
+  box-sizing: border-box;
+  transition: 50ms;
 }
 
 .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px; /* reduced space between input and error */
+  margin-top: 15px;
+  margin-bottom: 0px;
+  align-items: stretch;
+}
+
+.input-field {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-.input-group input {
   width: 100%;
-  padding: 12px 40px; /* space for icons */
-  border: 1px solid #ccc;
-  border-radius: 8px;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 12px 30px; /* space for icons */
   font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 0;
+  outline: none;
 }
 
-.input-group .icon {
+/* focus state for the bottom border */
+.modal-content input:focus {
+  border-bottom: 2px solid #F81A99;
+  box-shadow: none;
+}
+
+.input-group:has(.custom-error) input {
+  border-bottom: 2px solid red;
+}
+
+.input-field .icon {
   position: absolute;
-  left: 12px;
-  font-size: 16px;
-  color: #888;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 50ms;
+  width: 16px;
+  height: 16px;
+  fill: #888;
+  pointer-events: none;
 }
 
-.input-group .toggle {
+.input-field:focus-within .icon {
+  fill: #F81A99;
+}
+
+.input-group:has(.custom-error) .icon {
+  fill: red;
+}
+
+.input-field .toggle {
   position: absolute;
   right: 12px;
   font-size: 16px;
@@ -179,7 +225,7 @@ body {
   border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .submit-btn:hover {
@@ -217,4 +263,14 @@ body {
 
 .buttons button:hover {
   color: #F81A99;
+}
+
+/* ERROR MESSAGES */
+
+.custom-error {
+  color: red;
+  font-size: 12px;
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
 }
