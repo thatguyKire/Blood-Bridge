@@ -90,7 +90,7 @@
             <p class="custom-error">{{ registration_form.password2.errors.0 }}</p>
           {% endif %}
           {% if registration_form.non_field_errors %}
-            <p class="custom-error">{{ registration_form.non_field_errors.0 }}</p>
+            <p class="non-field-error">{{ registration_form.non_field_errors.0 }}</p>
           {% endif %}
         </div>
 
@@ -135,7 +135,7 @@
             <p class="custom-error">{{ login_form.password.errors.0 }}</p>
           {% endif %}
           {% if login_form.non_field_errors %}
-            <p class="custom-error">{{ login_form.non_field_errors.0 }}</p>
+            <p class="non-field-error">{{ login_form.non_field_errors.0 }}</p>
           {% endif %}
         </div>
 

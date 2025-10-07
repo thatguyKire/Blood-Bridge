@@ -184,7 +184,8 @@ body {
   box-shadow: none;
 }
 
-.input-group:has(.custom-error) input {
+.input-group:has(.custom-error) input,
+.modal-content:has(.non-field-error) input{
   border-bottom: 2px solid red;
 }
 
@@ -204,7 +205,8 @@ body {
   fill: #F81A99;
 }
 
-.input-group:has(.custom-error) .icon {
+.input-group:has(.custom-error) .icon,
+.modal-content:has(.non-field-error) .icon {
   fill: red;
 }
 
@@ -267,7 +269,7 @@ body {
 
 /* ERROR MESSAGES */
 
-.custom-error {
+.custom-error, .non-field-error {
   color: red;
   font-size: 12px;
   margin: 0px;
