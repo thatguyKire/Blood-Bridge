@@ -54,17 +54,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
     
   // Open / Close modals
-  openLogin?.addEventListener("click", () => loginModal.classList.add("show"));
+  openLogin?.addEventListener("click", () => {
+    loginModal.classList.add("show");
+    window.history.pushState({}, "", "/login");
+  });
+  
   closeLogin?.addEventListener("click", () => {
     resetPasswordVisibility()
     loginModal.classList.remove("show");
+    window.history.pushState({}, "", "/");
     clearModalForm(loginModal);
   });
 
-  openSignup?.addEventListener("click", () => signupModal.classList.add("show"));
+  openSignup?.addEventListener("click", () => {
+    signupModal.classList.add("show")
+    window.history.pushState({}, "", "/register");
+  });
+
   closeSignup?.addEventListener("click", () => {
     resetPasswordVisibility()
     signupModal.classList.remove("show");
+    window.history.pushState({}, "", "/");
     clearModalForm(signupModal);
   });
 
@@ -73,11 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === loginModal) {
       resetPasswordVisibility()
       loginModal.classList.remove("show");
+      window.history.pushState({}, "", "/");
       clearModalForm(loginModal);
     }
     if (e.target === signupModal) {
       resetPasswordVisibility()
       signupModal.classList.remove("show");
+      window.history.pushState({}, "", "/");
       clearModalForm(signupModal);
     }
   });
@@ -99,6 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       loginModal.classList.add("show");
       clearModalForm(loginModal);
+
+      window.history.pushState({}, "", "/login"); // ilisan ra ang url para dle /register ghapon
     });
   }
 
