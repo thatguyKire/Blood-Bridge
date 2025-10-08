@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("successOverlay"); // overlay element
   const closeSuccess = document.getElementById("closeSuccess"); // × button
 
+  const toggleIcons = document.querySelectorAll(".toggle");
+
   // Function to clear forms when modal closes
   function clearModalForm(modal) {
     const inputs = modal.querySelectorAll("input");
@@ -22,15 +24,46 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.querySelectorAll(".custom-error, .errorlist").forEach((e) => e.remove());
   }
 
+  // Toggle password visibility
+  toggleIcons.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      const targetId = icon.getAttribute("data-target"); 
+      const passwordInput = document.getElementById(targetId);
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.classList.remove("bi-eye");
+        icon.classList.add("bi-eye-slash");
+      } else {
+        passwordInput.type = "password";
+        icon.classList.remove("bi-eye-slash");
+        icon.classList.add("bi-eye");
+      }
+    });
+  });
+
+  // Reset password visibility when modal closes
+  function resetPasswordVisibility() {
+    toggleIcons.forEach((icon) => {
+      const targetId = icon.getAttribute("data-target");
+      const passwordInput = document.getElementById(targetId);
+      passwordInput.type = "password";
+      icon.classList.remove("bi-eye-slash");
+      icon.classList.add("bi-eye");
+    });
+  }
+    
   // Open / Close modals
   openLogin?.addEventListener("click", () => loginModal.classList.add("show"));
   closeLogin?.addEventListener("click", () => {
+    resetPasswordVisibility()
     loginModal.classList.remove("show");
     clearModalForm(loginModal);
   });
 
   openSignup?.addEventListener("click", () => signupModal.classList.add("show"));
   closeSignup?.addEventListener("click", () => {
+    resetPasswordVisibility()
     signupModal.classList.remove("show");
     clearModalForm(signupModal);
   });
@@ -38,10 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Click outside modal closes it
   window.addEventListener("click", (e) => {
     if (e.target === loginModal) {
+      resetPasswordVisibility()
       loginModal.classList.remove("show");
       clearModalForm(loginModal);
     }
     if (e.target === signupModal) {
+      resetPasswordVisibility()
       signupModal.classList.remove("show");
       clearModalForm(signupModal);
     }

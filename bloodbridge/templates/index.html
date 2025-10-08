@@ -73,7 +73,7 @@
               <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z" />
             </svg>
             <input type="password" name="password1" placeholder="password" id="password">
-            <i class="bi bi-eye toggle" onclick="togglePassword('password')"></i>
+            <i class="bi bi-eye toggle" data-target="password"></i>
           </div>
           {% if registration_form.password1.errors %}
           <p class="custom-error">{{ registration_form.password1.errors.0 }}</p>
@@ -89,7 +89,7 @@
               <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z" />
             </svg>
             <input type="password" name="password2" placeholder="confirm password" id="confirmPassword">
-            <i class="bi bi-eye toggle" onclick="togglePassword('confirmPassword')"></i>
+            <i class="bi bi-eye toggle" data-target="confirmPassword"></i>
           </div>
           {% if registration_form.password2.errors %}
           <p class="custom-error">{{ registration_form.password2.errors.0 }}</p>
@@ -136,7 +136,7 @@
               <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z" />
             </svg>
             <input type="password" name="password" placeholder="password" id="loginPassword">
-            <i class="bi bi-eye toggle" onclick="togglePassword('loginPassword')"></i>
+            <i class="bi bi-eye toggle" data-target="loginPassword"></i>
           </div>
           {% if login_form.password.errors %}
           <p class="custom-error">{{ login_form.password.errors.0 }}</p>
