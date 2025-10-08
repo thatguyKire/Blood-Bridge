@@ -312,11 +312,14 @@ body {
 }
 
 /* Check Icon */
-.checkmark {
+.checkmark{
   height: 85px;
   width: 85px;
-  fill: #6DCE36;
   margin-bottom: 15px;
+}
+
+.checkmark path {
+  fill: #6DCE36;
 }
 
 /* Buttons */
