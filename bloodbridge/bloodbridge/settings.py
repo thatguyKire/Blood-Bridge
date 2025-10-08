@@ -74,16 +74,12 @@ WSGI_APPLICATION = 'bloodbridge.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-import os
 
-from pathlib import Path
 import dj_database_url # type: ignore
 from dotenv import load_dotenv # type: ignore
 
 #load environment variables from .env file
 load_dotenv()
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 #get the database url from environment variable
 DATABASES = {
