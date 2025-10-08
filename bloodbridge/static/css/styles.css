@@ -2,6 +2,8 @@
 
 body {
   margin: 0;
+  margin-left: 50px;
+  margin-right: 50px;
   font-family: "Instrument Sans", sans-serif;
   background-color: #FFF8FC;
   color: #000;
@@ -41,11 +43,13 @@ body {
 }
 
 .buttons {
+  font-family: inherit;
   display: flex;
   gap: 15px;
 }
 
 .btn-login {
+  font-family: inherit;
   border: 2px solid #E1AFCC;
   padding: 8px 20px;
   border-radius: 25px;
@@ -56,6 +60,7 @@ body {
 }
 
 .btn-signup {
+  font-family: inherit;
   border: 2px solid #E1AFCC;
   background: none;
   padding: 10px 30px;
@@ -308,8 +313,9 @@ body {
 
 /* Check Icon */
 .checkmark {
-  font-size: 60px;
-  color: #28a745;
+  height: 85px;
+  width: 85px;
+  fill: #6DCE36;
   margin-bottom: 15px;
 }
 
@@ -320,6 +326,7 @@ body {
   color: white;
   border: none;
   border-radius: 25px;
+  margin-top: 30px;
   padding: 12px 28px;
   font-size: 15px;
   cursor: pointer;
@@ -332,18 +339,6 @@ body {
   transform: scale(1.05);
 }
 
-.resend {
-  display: block;
-  margin-bottom: 15px;
-  color: #888;
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.resend:hover {
-  text-decoration: underline;
-  color: #555;
-}
 
 /* SUCCESS OVERLAY CLOSE BUTTON */
 .close-btn {
@@ -372,6 +367,10 @@ body {
   max-width: 420px;
   width: 90%;
   animation: popUp 0.5s ease;
+}
+
+.overlay p {
+  color: #AAAAAA;
 }
 
 .overlay .close:hover {
