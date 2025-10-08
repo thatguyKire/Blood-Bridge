@@ -20,23 +20,19 @@ def index_view(request):
 
 # Registration view
 def register_view(request):
-    if request.user.is_authenticated:  # di na siya kabalik sa /register url if logged in
-        return redirect("home")
-    
     if request.method == "POST":
         form = CustomCreation(request.POST)
         if form.is_valid():
             form.save()
-
-            # ✅ Instead of redirecting to another page,
-            # re-render index.html with a success message
+            logout(request)
             return render(request, "index.html", {
-                "registration_success": True,  # flag to show success popup
+                "registration_success": True,
+                "login_form": CustomAuthentication(),
+                "registration_form": CustomCreation(),
             })
         else:
-            login_form = CustomAuthentication()
             return render(request, "index.html", {
-                "login_form": login_form,
+                "login_form": CustomAuthentication(),
                 "registration_form": form,
                 "open_modal": "register"
             })
@@ -74,4 +70,4 @@ def logout_view(request):
 def home_view(request):
     if not request.user.is_authenticated:  # di maka access sa /home if not logged in
         return redirect("index")
-    return render(request, "home.html")
+    return render(request, "index.html")
