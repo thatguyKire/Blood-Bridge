@@ -3,47 +3,49 @@ from django.contrib.auth import login, logout
 from .forms import CustomUserCreationForm as CustomCreation
 from .forms import CustomAuthenticationForm as CustomAuthentication
 
-# Create your views here.
 
 # Index view
 def index_view(request):
     login_form = CustomAuthentication()
     registration_form = CustomCreation()
 
-    if request.user.is_authenticated: # di na siya kabalik sa /index url if logged in
+    if request.user.is_authenticated:  # di na siya kabalik sa /index url if logged in
         return redirect("home")
 
     return render(request, "index.html", {
-        "login_form": login_form, 
+        "login_form": login_form,
         "registration_form": registration_form
     })
 
+
 # Registration view
 def register_view(request):
-    if request.user.is_authenticated: # di na siya kabalik sa /register url if logged in
+    if request.user.is_authenticated:  # di na siya kabalik sa /register url if logged in
         return redirect("home")
     
     if request.method == "POST":
         form = CustomCreation(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("registration_success")
+
+            # ✅ Instead of redirecting to another page,
+            # re-render index.html with a success message
+            return render(request, "index.html", {
+                "registration_success": True,  # flag to show success popup
+            })
         else:
             login_form = CustomAuthentication()
             return render(request, "index.html", {
-                "login_form": login_form, 
+                "login_form": login_form,
                 "registration_form": form,
                 "open_modal": "register"
             })
     return redirect("index")
 
-# Registration success view
-def registration_success_view(request):
-    return render(request, "registration_success.html")
 
 # Login view
 def login_view(request):
-    if request.user.is_authenticated: # di na siya kabalik sa /login url if logged in
+    if request.user.is_authenticated:  # di na siya kabalik sa /login url if logged in
         return redirect("home")
     
     if request.method == "POST":
@@ -55,20 +57,21 @@ def login_view(request):
         else:
             registration_form = CustomCreation()
             return render(request, "index.html", {
-                "login_form": form, 
+                "login_form": form,
                 "registration_form": registration_form,
                 "open_modal": "login"
             })
-    return redirect("index")    
+    return redirect("index")
+
 
 # Logout view
 def logout_view(request):
     logout(request)
     return redirect("index")
 
+
 # Home view
 def home_view(request):
-    if not request.user.is_authenticated: # di maka access sa /home if not logged in
+    if not request.user.is_authenticated:  # di maka access sa /home if not logged in
         return redirect("index")
     return render(request, "home.html")
-
